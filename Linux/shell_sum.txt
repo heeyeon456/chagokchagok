@@ -1,0 +1,484 @@
+ls
+디렉토리 내용 확인
+  -a  모든 파일 보기 .으로 시작하는 숨김 파일까지 표시함
+  -d  명령어에 디렉토리를 명시하면 해당 디렉토리 자체가 아닌 디렉토리 내용을 출력
+  -l  좀 더 자세한 결과
+  -r  출력 결과를 역순으로 표시
+  -s  파일을 크기 순으로 정렬
+  -t  파일을 시간 순으로
+
+cat
+텍스트 파일 확인
+  -n  줄번호 붙임
+  -b  텍스트가 있는 줄에만 번호 붙임
+  -T  탭문자가 표시되는 것을 원치 않을 경우
+
+more
+텍스트 파일을 화면 단위로 확인
+
+less
+텍스트 파일을 볼 때 사용하는 프로그램
+
+head
+파일의 첫 10줄만 출력
+ex) head -n 5 hello.txt
+
+tail
+파일의 마지막 10줄만 출력
+
+file
+파일의 종류 또는 정보 확인
+
+와일드카드
+  * 모든문자
+  ? 모든 하나의 문자
+  [characters]  characters문자셋에 포함된 문자
+  [!characters] characters 문자셋에 포함되지 않은 문자
+  [[:class:]] 지정된 문자 클래스에 포함된 문자
+  [:alnum:] 모든 알파벳과 숫자 문자
+  [:alpha:] 모든 알파벳과 문자
+  [:digit:] 모든 숫자
+  [:lower:] 모든 소문자
+  [:upper:] 모든 대문자
+
+uniq
+입력된 파일에 대하여 중복된 행이 연속되어 있을 때 한 행만 남기고 삭제하는 명령어
+  -c  중복된 행의 개수를 출력
+  -d  중복된 행에 대하여 한 행만 출력
+  -D  중복된 행에 대하여 모든 행을 출력
+  -u  중복된 행이 아닌 것만 출력
+
+sort
+지정한 파일의 내용을 정렬
+  -f 영어를 정렬할 때, 대소문자 구문 안함
+  -r 출력 수서를 역순으로
+  -o  저장할 파일명을 명시, 명시하지 않으면 화면에 출력
+ex) sort a.txt
+ex) sort -k 2 a.txt
+
+wc
+입력된 파일에 대하여 단어의 개수를 출력하는 명령어
+  -c  문자수만 보여줌
+  -m  캐릭터수만 보여줌
+  -l  라인수만 보여줌
+  -w  단어수만 보여줌
+  -L  가장 긴줄 한줄만 보여줌
+
+리다이렉션 redirection
+셸에서 실행되는 명령어에 대하여 표준 스트림을 변경할 수 있는 개념
+  < 입력 방향을 재지정
+  > 출력 방향을 재지정
+  >>  출력에 덧붙임
+  2>  오류의 방향 재지정
+  &>  출력과 오류를 재지정
+  >&  오류와 출력을 재지정(권장)
+  1>&2  출력을 오류로 내보냄
+  2>&1  오류를 출력으로 내보냄
+ex) ls -la > result.txt
+ex) ls -la /qwer > result.txt
+ex) ( pwd; ls; date ) > result.txt
+ex) ls -la / >> result
+ex) cat << END (마지막식별자)
+
+파이프
+어떤 명령에 대한 출력을 다른 명령의 입력으로 연결하는 기능
+ex) ls -l /usr/bin | less
+
+tee
+입력된 데이터를 표준 출력과 파일로 동시에 출력하는 명령어
+ex) ls -l|tee result.txt
+
+mkfifo
+FIFO를 생성하는 명령어
+ex) mkfifo myfifo
+ex) cat myfifo
+ex) cat > myfifo
+
+echo
+ex) echo * (문자를 현재 작업 디렉토리의 모든 파일의 이름으로 확장함)
+ex) exho ~ (문자를 현재 사용자의 홈 디렉토리 홈 디렉터리명으로 호가장)
+ex) echo $PATH
+ex) echo $((1+1)) (산술확장)
+ex) echo $(ls)  (명령어치환)
+ex) echo Number_{1..9}
+ex) echo \"hello\"
+
+환경변수
+현재 셸 뿐만 아니라 서브 셸로도 전달(전역변수)
+ex) export MY_NAME="tom"
+ex) export $$ (현재 셸의 PID)
+ex) export $? (최근에 실행시킨 명령어의 종료상태)
+
+grep
+유닉스를 위해 만들어진 텍스트 검색 기능을가진 명령어
+  -c  패턴이 일치하는 행의 개수를 출력
+  -n  패턴이 일치하느 행의 번호를 함께 출력
+  -i  검색할 때, 대소문자를 구분하지 않는다
+  -l  패턴이 포함된 파일의 이름을 출력
+  -L  패턴이 포함되지 않는 파일의 이름을 출력
+  -r  하위 디렉터리의 파일까지 출력
+  -w  패턴이 단어로써 일치하는 행만 출력
+  -v  문자열이 제외된, 즉 문자열이 포함되어 있지 않은 라인을 출력
+
+정규표현식
+  .
+  임의의 한문자와 대응
+  ^
+  문자열의 행의 시작에 특정패턴으로 시작하는 문자열
+  &
+  특정 패턴으로 끝나는 문자열을 검색하고자 할 때 사용
+  []
+  문자 집합 중 특정 문자와 일치하는 지를 확인
+  ex) ls /usr/bin | grep ^[^A-Za-z]' (문자 집합안에서 ^는 부정의 의미)
+
+문자클래스
+  [:alnum:] 알파벳 대문자와 숫자를 의미 [A-Za-z0-9]
+  [:word:]  [:alnum:]에 _추가
+  [:alpha:] 알파벳과 대소문자를 의미
+  [:blank:] 스페이스와 탭 문자를 의미
+  [:cntrl:] 아스키 코드의 제어 문자 를 의미 0-31 127
+  [:digit:] 숫자0부터 9까지
+  [:graph:] 출력 가능한 아스키 문자 의미 33-127
+  [:lower:] 알파벳 소문자
+  [:punct:] 아스킨의 구두점 기호
+  [:print:] 출력 가능한 아스키코드 [:graph:]에 스페이스 추가
+  [:space:] \t\r\n\v\f와 동일 아스키코드의 공백문자
+  [:upper:] 아스키코드의 대문자
+  [:xdigit:] 16진수를 표현하는 아스키 문자
+
+{}
+  반복 횟수 조절
+  {n} 앞의 문자가 n번 반복되는 경우
+  {n,} 앞의 문자가 n번 이상 반복되는 경우
+  {n,m} 앞의 문자가 n번 이상 m번 이하 반복되는 경우
+
+|
+  2개 이상의 검색할 패턴에 대하여 일치하는 패턴을 선택
+  ex) ls /usr/bin | egrep 'abc|adc' (abc와 adc문자열을 모두 포함)
+
+gzip
+  하나의 파일을 압축할 때 사용되는 무손실 압축 명령어
+  ex) gzip file.txt
+
+tar
+한 개 이상의 파일을 하나로 묶기 위한 명령어
+  -c  파일과 디렉토리의 목록에서 아카이브 생성하기
+  -x  아카이브 해제하기
+  -r  아카이브 끝에 지정된 경로명을 덧붙이기
+  -t  아카이브 내용 보기
+
+  -f  파일이름
+  -v  처리 과정을 표준 출력
+  -z  출력을 압축하기 위해 gzip으로 보냄
+  -j  출력을 압축하기 위해 bzip2
+
+  ex) tar cf test.tar dir1 dir2
+  ex) tar cvfz 1107.tar.gz dir1/&
+
+
+find
+디렉토리 내의 특정파일을 검색하는 명령어
+ex) find . -name '*.c'
+  -name pattern 패턴과 일치하는 파일과 디렉터리 검색
+  -iname pattern  대소문자구분 안하는 -name pattern
+  -size n 크기의 파일을 검색 ex)find -size 796c
+  -type x x형식 파일 검색
+  -empty  빈 파일이나 디렉터리 검색
+  -perm mode  권한에 부함되는 파일을 검색
+
+연산자
+  -a  And
+  -o  Or
+  -!  not
+  ()  앞뒤에 공백
+  ex) find . \( -name '*.c' -or -name '*.cpp' \) -type f
+
+액션
+find명령의 결과를 어떻게 처리할 것인가에 대한 행위
+  -print
+  -ls
+  -delete
+  -quit
+
+사용자정의액션
+ex) find . -type f -name '*.o' -exec rm \{\}\;
+  -depth
+  -maxdepth level
+  -mindepth level
+  -mount
+  ex) find . -maxdepth 1 -name '*.c'
+
+date
+%Y  4자리년도
+%y  2자리 년도
+
+printf
+"%d"
+"%#x" (16진수)
+"%05d"
+"%05.5f"
+"%010.5f"
+"%.5s"
+
+표준 입력
+read word1 word2 word3
+ex) read
+ex) echo $REPLY
+  -n num 입력된 행 전체 대신 num 수의 문자만 읽어옴
+  -p  prompt prompt문자열을 이용하여 입력을 위한 프롬프트 띄운다
+  -s  묵음 모드(비밀번호)
+
+산술연산
+  declare -i  정수형변수
+  let 수치연산 평가하기 위해 사용
+  ex) let ret=1+1
+  ex) let retn1\>n2
+
+  expr
+  ex) result=$(expr 2 + 2)  (가운데 띄어쓰기 주의)
+  ex) result=$(expr $var1 \* $var2)
+  ex) result=$(expr 2 \> 1)
+
+  (())
+  산술연산을 위한 전용문법으로 문자열은 다루지 않고 오직 숫자만 처리
+  ex) ((num = num + 1))
+
+  bc
+  쉘에서도 부동소수점 처리
+  ex) echo "scale=4; $var1 / $var2" | bc
+
+expr
+  expr length
+  문자열길이계산
+  ex) expr length "hello"
+
+  expr index
+  발견된 특정 문자의 위치 계산
+  ex) expr index "hello" "oe"
+
+  expr substr
+  부분 문자열 추출 연산
+  ex) echo $(expr substr $str 2 4)
+
+문자열 길이 계산ㅁ
+ex) echo ${#str}
+
+부분문자열 추출
+ex) echo ${str:0:4}
+ex) echo ${str:23} 길이 명시하지 않으면 문자열 끝까지 추출
+
+부분문자열 삭제
+ex) ${str#A*F}  (앞에서부터 가장 짧게 일치하는 부분 문자열 삭제)
+ex) ${str##A*F} (앞에서부터 가장 길게 일치하는 부분 문자열 삭제)
+ex) ${str%A*F}  (뒤에서부터 가장 짧게 일치하는 부분 문자열 삭제)
+ex) ${str%%A*F}  (뒤에서부터 가장 길게 일치하는 부분 문자열 삭제)
+ex) ${str/ABC/***} (처음일치하는 부분문자열을 치환문자열로 치환)
+ex) ${str//ABC/***} (일치하는 모든 부분문자열을 치환문자열로 치환)
+ex) ${str/#abc/---}
+ex) ${str/%abc/---}
+
+if
+ex)
+  if test $REPLY -eq 0; then
+    echo"number is zero"
+  fi
+
+if연산자
+  int1 -eq int2 ==
+  int1 -ne int2 !=
+  int1 -gt int2 >
+  int1 -ge int2 >=
+  int1 -lt int2 <
+  int1 -le int2 <=
+
+  if [ $REPLY -gt 0]; then
+    echo "number is positive"
+  elif [ $REPLY -lt 0]; then
+    echo "number is negative"
+  else
+    echo "number is zero"
+  fi
+
+
+문자열 비교
+-n str        str이 빈 문자열이 아니면 참
+str1 == str2  str1과 str2같다면 참
+str != str2    tr1과 str2다르면 참
+-z str1       str가 빈 문자열이면 참
+
+파일비교
+미완성
+
+산술명령식
+(())
+ex) if(( (($REPLY % 2)) == 0)); then
+
+합성명령어
+test와 동일하나 정규표현식 사용 가능
+ex) if [[ ! "$REPLY" =~ ^-?[0-9]+$ ]]; then
+
+case
+  ex)
+  case $REPLY in
+    0) echo "";;
+    1) echo "";;
+    *) echo "";;
+  esac
+
+  a)          a와 일치하는 단어
+  [[:alpha:]] 하나의 알파벳 문자와 일치하는 단어
+  ???)        3글자로 이루어진 단어
+  *.txt)      .txt문자열로 끝나는 단어
+  *)          모든단어
+  q|Q)  q또는 Q
+
+while
+  ex)
+  while (( $cnt<=5 )); do
+    printf ""
+  done
+
+until
+  ex)
+  until (( i > 5 )); do
+    echo ""
+  done
+
+  for
+  ex)
+  for i in 1 2 3 4 5 6 7 8 9; do
+    echo "$i: hello,world"
+  done
+  ex)
+  fruits="apple orange banana mango"
+  for i in $fruits
+  do
+    echo $i
+  done
+
+  ex)
+  for (( i=0; i<5; ++i )); do
+    echo "$i: hello,world"
+  done
+
+배열선언
+  ex) arr=( 1024 "one" $(pwd) $USER)
+  ex) arr2=([10]="zero" [0]="one" [33]="two")
+  ex) arr3[0]="zero"
+배열참조
+  ex) animals=("dog" "cat" "fish")
+      echo ${animals[0]}
+      echo $animals       (첫번쨰원소)
+      echo ${animals[*]}  (배열의 모든 원소를 하나의 문자열로)
+      echo ${#animals[@]} 배열 원소의 개수를 출력
+
+  ex)
+    arr=(0 1 2 3 4)
+    unset arr[2] (원소삭제 배열 자체를 삭제)
+    unset arr
+
+함수
+  ex)
+    function print_hello{
+      echo "hello"
+      return
+    }
+    print_hello
+
+함수 지역 변수
+ex)
+  func() {
+    local str="local"
+    echo $str
+    return
+  }
+
+매개변수
+ex)
+display() {
+  echo $0  (스크립트 이름 저장)
+  echo $1 $2 $3 (전달된 값이 순서대로 저장)
+  echo $# (값이 저장된 변수의 개수를 #변수에 저장 - 0번 매개변수 제외)
+  echo $1 $2 $3 ${10} (10개가 넘어갈 경우 중괄호)
+}
+display "apple" "orange" "banana"
+
+shift
+ex)
+  display() {
+    while [ -n "$1" ]; do
+      echo -n "$1 "
+      shift
+    done
+    echo
+  }
+
+  name1="dan"
+  name2="jon"
+  name3="tom"
+
+  display $name1 $name2 $name3
+
+특수한 변수
+  $*  인자로 전달된 값을 위치 매개변수 목록으로 확장
+  $@  인자로 전달된 값을 위치 매개변수 목록으로 확장
+
+  "$*"  위치 매개변수를 하나의 문자열 ("$1 $2 $3")로 처리
+  "$@"  위치 매개변수를 각각의 문자열 ("$1" "$2" "$3")로 처리
+
+함수 echo
+함수의 종료 상태가 아닌 함수 내에서 어떤 값을 반환하고 싶으면 echo명령
+ex)
+  get_hello() {
+    echo "hello"
+  }
+  ret=$(get_hello)
+  echo $ret
+
+함수 재귀호출
+ex)
+display() {
+  local count=$1
+  if (( count == 0 )); then
+    return 0
+  fi
+  echo $2
+  count=$(( count -1 ))
+  display $count "$2"
+}
+display 3 hello
+
+위치매개변수
+위치 매개변수란 프롬프트 상에서 스크립트 실행시에 사용된 옵션들을 처리하기 위한 변수
+ex) echo "argc:" $# ($# 변수는 위치 매개변수의 개수)
+ex)
+  count=1
+  while [ -n "$1" ]; do
+    printf "%d번 위치 매개변수: %s\n" $count $1
+    let ++count
+    shift
+  done
+
+옵션처리 getopts
+명령어를 사용할떄마다 위치 매개변수에 존재하는 옵션을 하나씩 처리
+ex)
+  while getopts "abc" opt; do
+    case $opt in
+      a);;
+      b);;
+      *);;
+    esac
+  done
+
+  while getopts :ab:c opt; do
+    case $opt in
+      a);;
+      b)echo "$OPTARG";;
+      *);;
+    esac
+  done
+
+  디버깅
+  set
+  set -x 디버깅설정
+  set +x 디버깅해제

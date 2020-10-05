@@ -1,0 +1,25 @@
+// multi inheretance
+#include <iostream>
+
+class A {
+    public:
+    int a;
+
+    A() { std::cout << "A 생성자 호출" << std::endl; }
+};
+
+class B {
+    public:
+    int b;
+    
+    B() { std::cout << "B의 생성자 호출" << std::endl; }
+};
+
+class C : public A, public B {
+    public:
+      int c;
+
+      C() : A(), B() { std::cout << "C의 생성자 호출" << std::endl; }
+};
+
+int main() { C c; }

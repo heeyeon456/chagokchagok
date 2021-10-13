@@ -1,0 +1,11 @@
+- 개발방법론
+* 절차 지향 (cobol, fortran)
+* 구조적 프로그램 (함수, c, pascal)
+* 객체지향 (클래스, c++, java, c#, python)
+
+- class
+    - heap 영역에 init에 선언된 a, b 변수 할당
+    - 주소가 3000 번지라고 가정하면
+    - 함수 실행 될떄 stack 에 self 변수 할당 (obj 주소값을 저장), x, y 도
+    - heap 에 할당된 a, b의값을 x, y로 바꿔줌
+    - 함수가 종료되면 self, x, y 해제

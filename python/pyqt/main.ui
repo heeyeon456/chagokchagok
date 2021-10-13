@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>589</width>
+    <height>460</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLineEdit" name="lineEditMain">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>50</y>
+      <width>431</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>589</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_1">
+    <property name="title">
+     <string>테스트1</string>
+    </property>
+    <addaction name="actiontest1"/>
+    <addaction name="actiontest2"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>테스트2</string>
+    </property>
+    <addaction name="separator"/>
+    <addaction name="separator"/>
+    <addaction name="separator"/>
+   </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>메뉴2</string>
+    </property>
+    <addaction name="actionmenu2"/>
+   </widget>
+   <addaction name="menu_1"/>
+   <addaction name="menu_2"/>
+   <addaction name="menu_3"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="separator"/>
+   <addaction name="actiontest1"/>
+   <addaction name="actionmenu2"/>
+   <addaction name="actiontest2"/>
+  </widget>
+  <action name="actiontest1">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../../../Downloads/iconfinder_multimedia-37_2849799.png</normaloff>../../../../Downloads/iconfinder_multimedia-37_2849799.png</iconset>
+   </property>
+   <property name="text">
+    <string>test1</string>
+   </property>
+   <property name="shortcut">
+    <string>Meta+Shift+K</string>
+   </property>
+  </action>
+  <action name="actionmenu2">
+   <property name="text">
+    <string>menu2</string>
+   </property>
+  </action>
+  <action name="actiontest2">
+   <property name="text">
+    <string>test2</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
